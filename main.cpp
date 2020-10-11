@@ -1,6 +1,7 @@
-#include <iostream>
+#include "lecture_1/lecture_1.cpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    lecture_1();
+
     return 0;
 }
