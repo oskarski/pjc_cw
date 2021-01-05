@@ -5,22 +5,19 @@
 #include "BoardAction.h"
 
 class InputReader {
-private:
-    BoardConfig *board_config;
-
 public:
-    InputReader(BoardConfig *board_config);
+    static int read_difficulty_level();
 
-    int read_column();
+    static int read_column(BoardConfig *board_config);
 
-    int read_row();
+    static int read_row(BoardConfig *board_config);
 
-    BoardAction read_action();
+    static BoardAction read_action();
 
 private:
-    bool is_valid_column(int column);
+    static bool is_valid_column(int column, BoardConfig *board_config);
 
-    bool is_valid_row(int row);
+    static bool is_valid_row(int row, BoardConfig *board_config);
 
     static bool is_valid_action(int action);
 };

@@ -8,23 +8,29 @@ using namespace std;
 
 int main() {
     bool is_game_finished = false;
+    BoardConfig *difficulty_levels[] = {
+            new BoardConfig(5, 5, 5),
+            new BoardConfig(7, 7, 12),
+            new BoardConfig(10, 10, 30)
+    };
 
-    BoardConfig *board_config = new BoardConfig(6, 6, 6);
+    int difficulty_level_index = InputReader::read_difficulty_level() - 1;
+
+    BoardConfig *board_config = difficulty_levels[difficulty_level_index];
     Board *board = new Board(board_config);
-    InputReader *input_reader = new InputReader(board_config);
 
     board->render();
 
     while (!is_game_finished) {
-        int column = input_reader->read_column() - 1;
-        int row = input_reader->read_row() - 1;
+        int column = InputReader::read_column(board_config) - 1;
+        int row = InputReader::read_row(board_config) - 1;
 
         if (!board->is_cell_clickable(column, row)) {
             cout << "Nieprawidłowe pole!" << endl;
             continue;
         }
 
-        BoardAction action = input_reader->read_action();
+        BoardAction action = InputReader::read_action();
 
         if (action == BoardAction::QUIT_ACTION) break;
         if (action == BoardAction::FLAG_ACTION) board->toggle_flag(column, row);
