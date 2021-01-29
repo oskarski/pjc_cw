@@ -33,7 +33,7 @@ int main() {
         if (action == BoardAction::QUIT_ACTION) {
             break;
         } else if (action == BoardAction::HINT_ACTION) {
-            if (left_number_of_hints < 0) {
+            if (left_number_of_hints <= 0) {
                 cout << "Nie masz juz podpowiedzi!" << endl;
                 continue;
             }
