@@ -15,6 +15,15 @@ void ScoreRepository::save_score(int score, const char *name) {
     }
 }
 
-void ScoreRepository::read_scores() {
+void ScoreRepository::print_scores() {
+    string line;
+    ifstream file ("scores.txt");
 
+    if (file.is_open()){
+        while ( getline (file,line) ) {
+            cout << line << '\n';
+        }
+
+        file.close();
+    }
 }

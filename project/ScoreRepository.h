@@ -5,7 +5,7 @@ class ScoreRepository {
 public:
     static void save_score(int score, const char *name);
 
-    static void read_scores();
+    static void print_scores();
 };
 
 #endif

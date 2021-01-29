@@ -64,19 +64,22 @@ int main() {
         if (board->is_game_won()) {
             cout << "Wygrana!" << endl;
             is_game_finished = true;
+
+            int end = (int) time(nullptr);
+            int score = end - start;
+            string name;
+
+            cout << "Podaj imię: ";
+            cin >> name;
+
+            cout << "Twój wynik: " << score;
+
+            ScoreRepository::save_score(score, name.c_str());
         }
     }
 
-    int end = (int) time(nullptr);
-    int score = end - start;
-    string name;
-
-    cout << "Podaj imię: ";
-    cin >> name;
-
-    cout << "Twój wynik: " << score;
-
-    ScoreRepository::save_score(score, name.c_str());
+    cout << endl << "Wyniki:" << endl;
+    ScoreRepository::print_scores();
 
     return 0;
 }
