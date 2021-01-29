@@ -29,6 +29,8 @@ public:
 
     bool contains_bomb() const;
 
+    bool contains_flag() const;
+
     bool is_in_win_state() const;
 
     void detonate();

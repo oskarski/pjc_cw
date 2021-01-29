@@ -72,6 +72,66 @@ int Board::count_nearby_bombs(int column, int row) {
     return bombs_counter;
 }
 
+bool Board::flag_nearest_bomb(int column, int row, int distance) {
+    int leftX = column - distance;
+    int rightX = column + distance;
+    int topY = row - distance;
+    int bottomY = row + distance;
+    int x = leftX;
+    int y = topY;
+
+    // TOP ROW
+    while (x <= rightX) {
+        if (this->board_cells->is_un_flagged_bomb(x, y)) {
+            this->board_cells->at(x, y)->toggle_flag();
+            return true;
+        }
+
+        x++;
+    }
+
+    x = rightX;
+    y = topY;
+
+    // RIGHT COLUMN
+    while (y <= bottomY) {
+        if (this->board_cells->is_un_flagged_bomb(x, y)) {
+            this->board_cells->at(x, y)->toggle_flag();
+            return true;
+        }
+
+        y++;
+    }
+
+    x = rightX;
+    y = bottomY;
+
+    // BOTTOM ROW
+    while (x >= leftX) {
+        if (this->board_cells->is_un_flagged_bomb(x, y)) {
+            this->board_cells->at(x, y)->toggle_flag();
+            return true;
+        }
+
+        x--;
+    }
+
+    x = leftX;
+    y = bottomY;
+
+    // LEFT COLUMN
+    while (y >= topY) {
+        if (this->board_cells->is_un_flagged_bomb(x, y)) {
+            this->board_cells->at(x, y)->toggle_flag();
+            return true;
+        }
+
+        y--;
+    }
+
+    return this->flag_nearest_bomb(column, row, distance + 1);
+}
+
 bool Board::is_cell_clickable(int column, int row) {
     return this->board_cells->is_clickable(column, row);
 }

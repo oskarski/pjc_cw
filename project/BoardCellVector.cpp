@@ -37,6 +37,10 @@ bool BoardCellVector::is_bomb(int column, int row) {
     return this->cell_exists(column, row) && this->at(column, row)->contains_bomb();
 }
 
+bool BoardCellVector::is_un_flagged_bomb(int column, int row) {
+    return this->is_bomb(column, row) && !this->at(column, row)->contains_flag();
+}
+
 bool BoardCellVector::is_clickable(int column, int row) {
     if (this->cell_exists(column, row) && this->at(column, row)->is_clickable()) return true;
 

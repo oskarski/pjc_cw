@@ -5,6 +5,7 @@ enum BoardAction {
     QUIT_ACTION,
     SELECT_ACTION,
     FLAG_ACTION,
+    HINT_ACTION,
 };
 
 #endif

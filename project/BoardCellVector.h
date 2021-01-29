@@ -24,6 +24,8 @@ public:
 
     bool is_bomb(int column, int row);
 
+    bool is_un_flagged_bomb(int column, int row);
+
     bool is_clickable(int column, int row);
 
 private:

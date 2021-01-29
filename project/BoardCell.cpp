@@ -51,6 +51,10 @@ bool BoardCell::contains_bomb() const {
     return this->is_bomb;
 }
 
+bool BoardCell::contains_flag() const {
+    return this->is_flagged;
+}
+
 void BoardCell::detonate() {
     if (this->contains_bomb()) this->value = BoardCell::DETONATED_VALUE;
 }

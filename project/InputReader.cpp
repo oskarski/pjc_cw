@@ -56,7 +56,8 @@ BoardAction InputReader::read_action() {
     cout << "Podaj akcje (";
     cout << BoardAction::QUIT_ACTION << " - zakoncz, ";
     cout << BoardAction::SELECT_ACTION << " - klik, ";
-    cout << BoardAction::FLAG_ACTION << " - flaga";
+    cout << BoardAction::FLAG_ACTION << " - flaga, ";
+    cout << BoardAction::HINT_ACTION << " - podpowiedz";
     cout << "): ";
     cin >> action;
 
@@ -79,5 +80,5 @@ bool InputReader::is_valid_row(int row, BoardConfig *board_config) {
 
 bool InputReader::is_valid_action(int action) {
     return action == BoardAction::FLAG_ACTION || action == BoardAction::SELECT_ACTION ||
-           action == BoardAction::QUIT_ACTION;
+           action == BoardAction::HINT_ACTION || action == BoardAction::QUIT_ACTION;
 }

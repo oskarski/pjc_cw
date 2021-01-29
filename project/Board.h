@@ -20,6 +20,8 @@ public:
 
     bool select_cell(int column, int row);
 
+    bool flag_nearest_bomb(int column, int row, int distance = 1);
+
     bool is_cell_clickable(int column, int row);
 
     bool is_game_won();
