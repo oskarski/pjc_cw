@@ -1,12 +1,15 @@
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
 #include "BoardConfig.h"
 #include "InputReader.h"
 #include "Board.h"
+#include "ScoreRepository.h"
 
 int main() {
+    int start = (int) time(nullptr);
     bool is_game_finished = false;
     BoardConfig *difficulty_levels[] = {
             new BoardConfig(5, 5, 5, 3),
@@ -27,7 +30,9 @@ int main() {
     while (!is_game_finished) {
         BoardAction action = InputReader::read_action();
 
-        if (action == BoardAction::HINT_ACTION) {
+        if (action == BoardAction::QUIT_ACTION) {
+            break;
+        } else if (action == BoardAction::HINT_ACTION) {
             if (left_number_of_hints < 0) {
                 cout << "Nie masz juz podpowiedzi!" << endl;
                 continue;
@@ -44,7 +49,6 @@ int main() {
                 continue;
             }
 
-            if (action == BoardAction::QUIT_ACTION) break;
             if (action == BoardAction::FLAG_ACTION) board->toggle_flag(column, row);
             if (action == BoardAction::SELECT_ACTION) is_game_finished = board->select_cell(column, row);
         }
@@ -62,6 +66,17 @@ int main() {
             is_game_finished = true;
         }
     }
+
+    int end = (int) time(nullptr);
+    int score = end - start;
+    string name;
+
+    cout << "Podaj imię: ";
+    cin >> name;
+
+    cout << "Twój wynik: " << score;
+
+    ScoreRepository::save_score(score, name.c_str());
 
     return 0;
 }
